@@ -23,14 +23,14 @@ WORKDIR /var/www/html
 # Copie os arquivos do projeto Laravel para o contêiner
 COPY . .
 
-# Instale as dependências do Laravel
-RUN composer install --no-dev --optimize-autoloader
-
 # Defina as permissões corretas
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Instalação do Composer com permissão de superusuário permitida
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
+
 # Copie o arquivo de configuração do Apache
-COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY .docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Habilite o mod_rewrite do Apache
 RUN a2enmod rewrite
