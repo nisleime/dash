@@ -16,9 +16,9 @@ services:
             - atende
         environment:
             DB_CONNECTION: mysql
-            DB_HOST: 172.20.0.4
+            DB_HOST: 172.20.0.6
             DB_PORT: 3306
-            DB_DATABASE: DASHBOARD
+            DB_DATABASE: dash
             DB_USERNAME: root
             DB_PASSWORD: Ncm@647534
 
@@ -41,7 +41,7 @@ services:
         ports:
             - "8010:80"
         environment:
-            PMA_HOST: 172.20.0.4
+            PMA_HOST: 172.20.0.6
             PMA_PORT: 3306
             MYSQL_ROOT_PASSWORD: Ncm@647534
         networks:
